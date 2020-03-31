@@ -43,7 +43,7 @@ def load_dir(directory):
             Full path of the directory to be loaded.
     """
     if not Path(directory).exists():
-        create_dir = raw_input(
+        create_dir = input(
             "The directory '{}' does not exist.\n"
             "Do you want to create it? [Y] Yes, [N] No. ".
             format(directory)
