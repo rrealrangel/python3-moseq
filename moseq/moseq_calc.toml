@@ -1,0 +1,69 @@
+# Configuration file for pySDI.
+
+[general]
+    #    General settings.
+    #       input_dir_raw: string
+    #           Full path of the directory where raw MERRA-2 dataset
+    #           are stored.
+    #       input_dir_imported: string
+    #           Full path of the directory where aggregated MERRA-2
+    #           dataset are stored.
+    #       output_dir: string
+    #           Full path of the directory where outputs will be saved.
+    #       output_fname_prefix: string
+    #           Is the prefix for the output files.
+    #       output_spatial_resolution: float
+    #           Defines the size of the grid (latitude = longitude) for
+    #           the output datasets.
+    #       output_nodata: integer
+    #           Value to be interpreted as a null cell in the output
+    #           datasets.
+    #       export_last: bool
+    #           Define wether exporting only the last time step (true)
+    #           or all the analyzed
+    #           period (false).
+    #       trim_vmap: string
+    #           Full path of the vector map to be used to trim the
+    #           results.
+    input_dir_raw = 'C:/Users/rreal/OneDrive/Datasets/NASA/MERRA-2/M2TMNXLND.5.12.4'
+    input_dir_imported = 'C:/Users/rreal/OneDrive/Proyectos/Multianual/moseq/inputs/pysdi_data'
+    output_dir = 'C:/Users/rreal/OneDrive/Proyectos/Multianual/moseq/outputs/sdi_datasets'
+    output_fname_prefix = ""
+    output_spatial_resolution = 0
+    output_interp_method = 'nearest'
+    output_nodata = -32768
+    export_last = false
+    trim_vmap = 'C:/Users/rreal/OneDrive/Proyectos/Multianual/moseq/inputs/mex-centram-caribe/mex-centram-caribe.shp'
+
+[intensity]
+    #   Settings for drought intensity computing.
+    #       compute: boolean
+    #           Defines wether to compute (true) or not (false) the
+    #           drought intensity index.
+    #       time_scale: list or tuple
+    #           Time scales (in months) to use in the drought intensity
+    #           computation.
+    #       intensity.sdi: (key = val)
+    #           Keys are the name of the non-parametric standardized
+    #           drought index. Vals are the MERRA-2 variables used to
+    #           compute it.
+    compute = true
+    temp_scale = [1]
+
+    [intensity.sdi]
+        'SPI' = [['PRECTOTLAND']]
+        #'SRI' = [['BASEFLOW', 'RUNOFF']]
+        'SSI' = [['RZMC']]
+        #'MSDI_PRESMO' = [['PRECTOTLAND'], ['RZMC']]
+
+[magnitude]
+    #   Settings for drought magnitude computing.
+    #       compute: boolean
+    #           Defines wether to compute (true) or not (false) the
+    #           drought magnitude.
+    #       intensity_threshold: float
+    #           Threshold of drought intensity to be used as reference
+    #           for drought magnitude computing.
+    compute = true
+    intensity_threshold = 1
+    normal_range = 0.674
