@@ -66,3 +66,4 @@
     #           for drought magnitude computing.
     compute = true
     intensity_threshold = 1
+    normal_range = 0.674

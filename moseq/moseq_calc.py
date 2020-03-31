@@ -283,14 +283,13 @@ check_source(
 print("- Opening MERRA-2 datasets.")
 indicators = xr.open_mfdataset(
     paths=(config.general['input_dir_imported'] + '**/*.nc4'),
-    autoclose=True,
-    parallel=False
+    combine='by_coords'
     )
-indicators = indicators.chunk(chunks={'time': -1})
+indicators = indicators.chunk(chunks={'time': -1, 'lat': 15, 'lon': 15})
 indicators = convert_units(indicators)
 
 for temp_scale in config.intensity['temp_scale']:
-    for index, variable in config.intensity['sdi'].iteritems():
+    for index, variable in config.intensity['sdi'].items():
         # Compute drought intensity.
         drought_intensity = drgt.compute_npsdi(
             data=indicators,
